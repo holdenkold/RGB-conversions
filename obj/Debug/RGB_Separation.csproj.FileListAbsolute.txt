@@ -7,3 +7,6 @@
 \\Mac\Home\Desktop\GK\RGB_Separation\obj\Debug\RGB_Separation.csproj.GenerateResource.cache
 \\Mac\Home\Desktop\GK\RGB_Separation\obj\Debug\RGB_Separation.exe
 \\Mac\Home\Desktop\GK\RGB_Separation\obj\Debug\RGB_Separation.pdb
+\\Mac\Home\Desktop\GK\RGB_Separation\bin\Debug\MathNet.Numerics.dll
+\\Mac\Home\Desktop\GK\RGB_Separation\bin\Debug\MathNet.Numerics.xml
+\\Mac\Home\Desktop\GK\RGB_Separation\obj\Debug\RGB_Separation.csproj.CopyComplete

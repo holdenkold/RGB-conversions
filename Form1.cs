@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +29,14 @@ namespace RGB_Separation
             Image2.SizeMode = PictureBoxSizeMode.StretchImage;
             Image3.SizeMode = PictureBoxSizeMode.StretchImage;
             LabBox.Enabled = false;
-
-            
-
+            D65.Checked = true;
+            sRGB.Checked = true;
+            SeparateChannels.Enabled = false;
+            YCbCr.Enabled = false;
+            HSV.Enabled = false;
+            Lab.Enabled = false;
+            SaveButton.Enabled = false;
+            gamma.Value = (decimal)2.2;
         }
 
         private void InitImage_Click(object sender, EventArgs e)
@@ -49,6 +55,12 @@ namespace RGB_Separation
                 GreenBitmap = new Bitmap(InitBitmap);
                 BlueBitmap = new Bitmap(InitBitmap);
             }
+
+            SeparateChannels.Enabled = true;
+            YCbCr.Enabled = true;
+            HSV.Enabled = true;
+            Lab.Enabled = true;
+            SaveButton.Enabled = true;
 
         }
 
@@ -105,6 +117,40 @@ namespace RGB_Separation
             }
             else
                 LabBox.Enabled = true;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            //SaveFileDialog dialog = new SaveFileDialog();
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //{
+                //Image1.Image.Save("Image1", ImageFormat.Jpeg);
+                //Image2.Image.Save("Image2", ImageFormat.Jpeg);
+                //Image3.Image.Save("Image3", ImageFormat.Jpeg);
+            //}
+        }
+
+        private void sRGB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sRGB.Checked)
+            {
+                rp_x.Value = (decimal)0.64;
+                rp_y.Value = (decimal)0.33;
+                gp_x.Value = (decimal)0.3;
+                gp_y.Value = (decimal)0.6;
+                bp_x.Value = (decimal)0.15;
+                bp_y.Value = (decimal)0.06;
+
+            }
+        }
+
+        private void D65_CheckedChanged(object sender, EventArgs e)
+        {
+            if (D65.Checked)
+            {
+                wp_x.Value = (decimal)0.3127;
+                wp_y.Value = (decimal)0.329;
+            }
         }
     }
 }
