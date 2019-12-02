@@ -176,10 +176,10 @@ namespace RGB_Separation
                     var b = lab[2];
 
                     var r1 = a + 127;
-                    var g1 = a - 127;
+                    var g1 = 127 - a;
 
                     var r2 = b + 127;
-                    var b1 = b - 127;
+                    var b1 = 127 - b;
 
                     rbmap.SetPixel(i, j, Color.FromArgb(255, (int)L, (int)L, (int)L));
                     gbmap.SetPixel(i, j, Color.FromArgb(255, (int)r1, (int)g1, 127));
@@ -212,13 +212,11 @@ namespace RGB_Separation
             { 
                 { Xr, Xg, Xb },
                 { Yr, Yg, Yb }, 
-                { Xr, Xg, Xb } 
+                { Zr, Zg, Zb } 
             });
 
             Vector<double> W = Vector<double>.Build.DenseOfArray(new double[] { ls.WhitePoint.Item1, ls.WhitePoint.Item2, Zw });
             Vector<double> S = XYZ.Inverse().Multiply(W);
-            //var inv = XYZ.Inverse();
-            //Vector<double> S = inv.Multiply(W);
             Matrix<double> M = Matrix<double>.Build.DenseOfArray(new double[,] 
             {
                 { S[0] * Xr, S[1] * Xg, S[2] * Xb },
@@ -228,32 +226,6 @@ namespace RGB_Separation
 
             Vector<double> x = M.Multiply(Vector<double>.Build.DenseOfArray(new double[] { r, g, b }));
             return x;
-        }
-
-        public (double, double, double) RGB2XYZ2(int r, int g, int b)
-        {
-            var Xr = ls.RedPrimary.Item1 / ls.RedPrimary.Item2;
-            var Yr = 1;
-            var Zr = (1 - ls.RedPrimary.Item1 - ls.RedPrimary.Item2) / ls.RedPrimary.Item2;
-
-            var Xg = ls.GreenPrimary.Item1 / ls.GreenPrimary.Item2;
-            var Yg = 1;
-            var Zg = (1 - ls.GreenPrimary.Item1 - ls.GreenPrimary.Item2) / ls.GreenPrimary.Item2;
-
-            var Xb = ls.BluePrimary.Item1 / ls.BluePrimary.Item2;
-            var Yb = 1;
-            var Zb = (1 - ls.BluePrimary.Item1 - ls.BluePrimary.Item2) / ls.BluePrimary.Item2;
-
-            var Zw = (1 - ls.WhitePoint.Item1 - ls.WhitePoint.Item2) / ls.WhitePoint.Item2;
-
-            double[,] XYZ = { { Xr, Xg, Xb }, { Yr, Yg, Yb }, { Xr, Xg, Xb } };
-            double[,] W = { { ls.WhitePoint.Item1 }, { ls.WhitePoint.Item2 }, { Zw } };
-            double[,] S = Helper.MatrixMultiply(XYZ, W);
-            double[,] M = { { S[0, 0] * Xr, S[1, 0] * Xg, S[2, 0] * Xb }, { S[0, 0] * Yr, S[1, 0] * Yg, S[2, 0] * Yb }, { S[0, 0] * Xr, S[1, 0] * Xg, S[2, 0] * Xb } };
-            double[,] sRGB = { { 0.4124, 0.3576, 0.1805 }, { 0.2126, 0.7152, 0.0722 }, { 0.0193, 0.1192, 0.9505 } };
-
-            double[,] x = Helper.MatrixMultiply(M, new double [,]{ { r} , { g}, { b} });
-            return (x[0, 0], x[1, 0], x[2, 0]);
         }
 
         public Vector<double> XYZ2LAB(Vector<double> x)

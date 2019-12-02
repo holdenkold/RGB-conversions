@@ -141,7 +141,10 @@ namespace RGB_Separation
                 bp_x.Value = (decimal)0.15;
                 bp_y.Value = (decimal)0.06;
 
+                gamma.Value = (decimal)2.2;
+
             }
+
         }
 
         private void D65_CheckedChanged(object sender, EventArgs e)
@@ -150,6 +153,88 @@ namespace RGB_Separation
             {
                 wp_x.Value = (decimal)0.3127;
                 wp_y.Value = (decimal)0.329;
+            }
+        }
+
+        private void AdobeRGB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (AdobeRGB.Checked)
+            {
+                rp_x.Value = (decimal)0.64;
+                rp_y.Value = (decimal)0.33;
+                gp_x.Value = (decimal)0.21;
+                gp_y.Value = (decimal)0.71;
+                bp_x.Value = (decimal)0.15;
+                bp_y.Value = (decimal)0.06;
+
+                gamma.Value = (decimal)2.2;
+
+            }
+        }
+
+        private void AppleRGB_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (AppleRGB.Checked)
+            {
+                rp_x.Value = (decimal)0.625;
+                rp_y.Value = (decimal)0.34;
+                gp_x.Value = (decimal)0.28;
+                gp_y.Value = (decimal)0.595;
+                bp_x.Value = (decimal)0.155;
+                bp_y.Value = (decimal)0.07;
+
+                gamma.Value = (decimal)1.8;
+
+            }
+
+        }
+
+        private void CIE_RGB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CIE_RGB.Checked)
+            {
+                rp_x.Value = (decimal)0.735;
+                rp_y.Value = (decimal)0.265;
+                gp_x.Value = (decimal)0.274;
+                gp_y.Value = (decimal)0.717;
+                bp_x.Value = (decimal)0.167;
+                bp_y.Value = (decimal)0.009;
+
+                gamma.Value = (decimal)2.2;
+
+            }
+        }
+
+        private void Wide_Gamut_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (Wide_Gamut.Checked)
+            {
+                rp_x.Value = (decimal)0.7347;
+                rp_y.Value = (decimal)0.2653;
+                gp_x.Value = (decimal)0.1152;
+                gp_y.Value = (decimal)0.8264;
+                bp_x.Value = (decimal)0.1566;
+                bp_y.Value = (decimal)0.0177;
+
+                gamma.Value = (decimal)1.2;
+
+            }
+        }
+
+        private void PAL_SECAM_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PAL_SECAM.Checked)
+            {
+                rp_x.Value = (decimal)0.64;
+                rp_y.Value = (decimal)0.33;
+                gp_x.Value = (decimal)0.29;
+                gp_y.Value = (decimal)0.6;
+                bp_x.Value = (decimal)0.15;
+                bp_y.Value = (decimal)0.06;
+
+                gamma.Value = (decimal)1.95;
             }
         }
     }
