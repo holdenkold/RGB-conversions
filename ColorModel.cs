@@ -165,7 +165,11 @@ namespace RGB_Separation
                 for (int j = 0; j < InitBitmap.Height; j++)
                 {
                     Color p = InitBitmap.GetPixel(i, j);
-                    var XYZ = RGB2XYZ(p.R, p.G, p.B);
+                    double R = ((double)p.R / 255.0);
+                    double G = ((double)p.G / 255.0);
+                    double B = ((double)p.B / 255.0);
+
+                    var XYZ = RGB2XYZ(R, G, B);
                     var lab = XYZ2LAB(XYZ);
                     var L = lab[0];
                     var a = lab[1];
@@ -188,7 +192,7 @@ namespace RGB_Separation
             return (rbmap, gbmap, bbmap);
         }
 
-        public Vector<double> RGB2XYZ(int r, int g, int b)
+        public Vector<double> RGB2XYZ(double r, double g, double b)
         {
             var Xr = ls.RedPrimary.Item1 / ls.RedPrimary.Item2;
             var Yr = 1;
@@ -202,12 +206,26 @@ namespace RGB_Separation
             var Yb = 1;
             var Zb = (1 - ls.BluePrimary.Item1 - ls.BluePrimary.Item2) / ls.BluePrimary.Item2;
 
-            var Zw = (1 - ls.WhitePoint.Item1 - ls.WhitePoint.Item2) / ls.WhitePoint.Item2;
+            var Zw = 1 - ls.WhitePoint.Item1 - ls.WhitePoint.Item2;
 
-            Matrix<double> XYZ = Matrix<double>.Build.DenseOfArray(new double[,] { { Xr, Xg, Xb }, { Yr, Yg, Yb }, { Xr, Xg, Xb } });
+            Matrix<double> XYZ = Matrix<double>.Build.DenseOfArray(new double[,] 
+            { 
+                { Xr, Xg, Xb },
+                { Yr, Yg, Yb }, 
+                { Xr, Xg, Xb } 
+            });
+
             Vector<double> W = Vector<double>.Build.DenseOfArray(new double[] { ls.WhitePoint.Item1, ls.WhitePoint.Item2, Zw });
             Vector<double> S = XYZ.Inverse().Multiply(W);
-            Matrix<double> M = Matrix<double>.Build.DenseOfArray(new double[,] { { S[0] * Xr, S[1] * Xg, S[2] * Xb }, { S[0] * Yr, S[1] * Yg, S[2] * Yb }, { S[0] * Xr, S[1] * Xg, S[2] * Xb } });
+            //var inv = XYZ.Inverse();
+            //Vector<double> S = inv.Multiply(W);
+            Matrix<double> M = Matrix<double>.Build.DenseOfArray(new double[,] 
+            {
+                { S[0] * Xr, S[1] * Xg, S[2] * Xb },
+                { S[0] * Yr, S[1] * Yg, S[2] * Yb },
+                { S[0] * Zr, S[1] * Zg, S[2] * Zb } 
+            });
+
             Vector<double> x = M.Multiply(Vector<double>.Build.DenseOfArray(new double[] { r, g, b }));
             return x;
         }
@@ -249,20 +267,19 @@ namespace RGB_Separation
             double []f = new double[3];
             xr[0] = x[0] / ls.WhitePoint.Item1;
             xr[1] = x[1] / ls.WhitePoint.Item2;
-            var Zw = (1 - ls.WhitePoint.Item1 - ls.WhitePoint.Item2) / ls.WhitePoint.Item2;
-            xr[2] = x[2] / Zw;
+            xr[2] = x[2] / (1 - ls.WhitePoint.Item1 - ls.WhitePoint.Item2);
 
             for (int i = 0; i < 3; i++)
             {
                 if (xr[i] > e)
-                    f[i] = Math.Pow(xr[i], 1 / 3);
+                    f[i] = Math.Pow(xr[i], 1.0 / 3.0);
                 else
-                    f[i] = (k * xr[i] + 16) / 116;
+                    f[i] = (k * xr[i] + 16.0) / 116.0;
             }
 
-            L = 116 * f[1] - 16;
-            a = 500*(f[0] - f[1]);
-            b = 200*(f[1] - f[2]);
+            L = 116 * f[1] - 16.0;
+            a = 500.0 *(f[0] - f[1]);
+            b = 200.0 *(f[1] - f[2]);
             return Vector<double>.Build.DenseOfArray(new double[] { L, a, b });
         }
 
