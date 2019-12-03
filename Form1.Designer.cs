@@ -38,6 +38,11 @@
             this.Lab = new System.Windows.Forms.Button();
             this.LabBox = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PAL_SECAM = new System.Windows.Forms.RadioButton();
+            this.Wide_Gamut = new System.Windows.Forms.RadioButton();
+            this.CIE_RGB = new System.Windows.Forms.RadioButton();
+            this.AppleRGB = new System.Windows.Forms.RadioButton();
+            this.AdobeRGB = new System.Windows.Forms.RadioButton();
             this.rp_x = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -63,11 +68,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SaveButton = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.AdobeRGB = new System.Windows.Forms.RadioButton();
-            this.AppleRGB = new System.Windows.Forms.RadioButton();
-            this.CIE_RGB = new System.Windows.Forms.RadioButton();
-            this.Wide_Gamut = new System.Windows.Forms.RadioButton();
-            this.PAL_SECAM = new System.Windows.Forms.RadioButton();
+            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.InitImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2)).BeginInit();
@@ -203,6 +204,66 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Predefined color profile";
             // 
+            // PAL_SECAM
+            // 
+            this.PAL_SECAM.AutoSize = true;
+            this.PAL_SECAM.Location = new System.Drawing.Point(185, 52);
+            this.PAL_SECAM.Name = "PAL_SECAM";
+            this.PAL_SECAM.Size = new System.Drawing.Size(87, 17);
+            this.PAL_SECAM.TabIndex = 23;
+            this.PAL_SECAM.TabStop = true;
+            this.PAL_SECAM.Text = "PAL/SECAM";
+            this.PAL_SECAM.UseVisualStyleBackColor = true;
+            this.PAL_SECAM.CheckedChanged += new System.EventHandler(this.PAL_SECAM_CheckedChanged);
+            // 
+            // Wide_Gamut
+            // 
+            this.Wide_Gamut.AutoSize = true;
+            this.Wide_Gamut.Location = new System.Drawing.Point(86, 52);
+            this.Wide_Gamut.Name = "Wide_Gamut";
+            this.Wide_Gamut.Size = new System.Drawing.Size(84, 17);
+            this.Wide_Gamut.TabIndex = 22;
+            this.Wide_Gamut.TabStop = true;
+            this.Wide_Gamut.Text = "Wide Gamut";
+            this.Wide_Gamut.UseVisualStyleBackColor = true;
+            this.Wide_Gamut.CheckedChanged += new System.EventHandler(this.Wide_Gamut_CheckedChanged);
+            // 
+            // CIE_RGB
+            // 
+            this.CIE_RGB.AutoSize = true;
+            this.CIE_RGB.Location = new System.Drawing.Point(6, 52);
+            this.CIE_RGB.Name = "CIE_RGB";
+            this.CIE_RGB.Size = new System.Drawing.Size(68, 17);
+            this.CIE_RGB.TabIndex = 21;
+            this.CIE_RGB.TabStop = true;
+            this.CIE_RGB.Text = "CIE RGB";
+            this.CIE_RGB.UseVisualStyleBackColor = true;
+            this.CIE_RGB.CheckedChanged += new System.EventHandler(this.CIE_RGB_CheckedChanged);
+            // 
+            // AppleRGB
+            // 
+            this.AppleRGB.AutoSize = true;
+            this.AppleRGB.Location = new System.Drawing.Point(186, 19);
+            this.AppleRGB.Name = "AppleRGB";
+            this.AppleRGB.Size = new System.Drawing.Size(75, 17);
+            this.AppleRGB.TabIndex = 20;
+            this.AppleRGB.TabStop = true;
+            this.AppleRGB.Text = "AppleRGB";
+            this.AppleRGB.UseVisualStyleBackColor = true;
+            this.AppleRGB.CheckedChanged += new System.EventHandler(this.AppleRGB_CheckedChanged);
+            // 
+            // AdobeRGB
+            // 
+            this.AdobeRGB.AutoSize = true;
+            this.AdobeRGB.Location = new System.Drawing.Point(86, 19);
+            this.AdobeRGB.Name = "AdobeRGB";
+            this.AdobeRGB.Size = new System.Drawing.Size(79, 17);
+            this.AdobeRGB.TabIndex = 19;
+            this.AdobeRGB.TabStop = true;
+            this.AdobeRGB.Text = "AdobeRGB";
+            this.AdobeRGB.UseVisualStyleBackColor = true;
+            this.AdobeRGB.CheckedChanged += new System.EventHandler(this.AdobeRGB_CheckedChanged);
+            // 
             // rp_x
             // 
             this.rp_x.DecimalPlaces = 4;
@@ -319,6 +380,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.domainUpDown1);
             this.groupBox1.Controls.Add(this.D65);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.wp_x);
@@ -414,65 +476,13 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // AdobeRGB
+            // domainUpDown1
             // 
-            this.AdobeRGB.AutoSize = true;
-            this.AdobeRGB.Location = new System.Drawing.Point(86, 19);
-            this.AdobeRGB.Name = "AdobeRGB";
-            this.AdobeRGB.Size = new System.Drawing.Size(79, 17);
-            this.AdobeRGB.TabIndex = 19;
-            this.AdobeRGB.TabStop = true;
-            this.AdobeRGB.Text = "AdobeRGB";
-            this.AdobeRGB.UseVisualStyleBackColor = true;
-            this.AdobeRGB.CheckedChanged += new System.EventHandler(this.AdobeRGB_CheckedChanged);
-            // 
-            // AppleRGB
-            // 
-            this.AppleRGB.AutoSize = true;
-            this.AppleRGB.Location = new System.Drawing.Point(186, 19);
-            this.AppleRGB.Name = "AppleRGB";
-            this.AppleRGB.Size = new System.Drawing.Size(75, 17);
-            this.AppleRGB.TabIndex = 20;
-            this.AppleRGB.TabStop = true;
-            this.AppleRGB.Text = "AppleRGB";
-            this.AppleRGB.UseVisualStyleBackColor = true;
-            this.AppleRGB.CheckedChanged += new System.EventHandler(this.AppleRGB_CheckedChanged);
-            // 
-            // CIE_RGB
-            // 
-            this.CIE_RGB.AutoSize = true;
-            this.CIE_RGB.Location = new System.Drawing.Point(6, 52);
-            this.CIE_RGB.Name = "CIE_RGB";
-            this.CIE_RGB.Size = new System.Drawing.Size(68, 17);
-            this.CIE_RGB.TabIndex = 21;
-            this.CIE_RGB.TabStop = true;
-            this.CIE_RGB.Text = "CIE RGB";
-            this.CIE_RGB.UseVisualStyleBackColor = true;
-            this.CIE_RGB.CheckedChanged += new System.EventHandler(this.CIE_RGB_CheckedChanged);
-            // 
-            // Wide_Gamut
-            // 
-            this.Wide_Gamut.AutoSize = true;
-            this.Wide_Gamut.Location = new System.Drawing.Point(86, 52);
-            this.Wide_Gamut.Name = "Wide_Gamut";
-            this.Wide_Gamut.Size = new System.Drawing.Size(84, 17);
-            this.Wide_Gamut.TabIndex = 22;
-            this.Wide_Gamut.TabStop = true;
-            this.Wide_Gamut.Text = "Wide Gamut";
-            this.Wide_Gamut.UseVisualStyleBackColor = true;
-            this.Wide_Gamut.CheckedChanged += new System.EventHandler(this.Wide_Gamut_CheckedChanged);
-            // 
-            // PAL_SECAM
-            // 
-            this.PAL_SECAM.AutoSize = true;
-            this.PAL_SECAM.Location = new System.Drawing.Point(185, 52);
-            this.PAL_SECAM.Name = "PAL_SECAM";
-            this.PAL_SECAM.Size = new System.Drawing.Size(87, 17);
-            this.PAL_SECAM.TabIndex = 23;
-            this.PAL_SECAM.TabStop = true;
-            this.PAL_SECAM.Text = "PAL/SECAM";
-            this.PAL_SECAM.UseVisualStyleBackColor = true;
-            this.PAL_SECAM.CheckedChanged += new System.EventHandler(this.PAL_SECAM_CheckedChanged);
+            this.domainUpDown1.Location = new System.Drawing.Point(13, 106);
+            this.domainUpDown1.Name = "domainUpDown1";
+            this.domainUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.domainUpDown1.TabIndex = 23;
+            this.domainUpDown1.Text = "domainUpDown1";
             // 
             // Form1
             // 
@@ -556,6 +566,7 @@
         private System.Windows.Forms.RadioButton PAL_SECAM;
         private System.Windows.Forms.RadioButton Wide_Gamut;
         private System.Windows.Forms.RadioButton CIE_RGB;
+        private System.Windows.Forms.DomainUpDown domainUpDown1;
     }
 }
 

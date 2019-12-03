@@ -121,13 +121,13 @@ namespace RGB_Separation
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //SaveFileDialog dialog = new SaveFileDialog();
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //{
-                //Image1.Image.Save("Image1", ImageFormat.Jpeg);
-                //Image2.Image.Save("Image2", ImageFormat.Jpeg);
-                //Image3.Image.Save("Image3", ImageFormat.Jpeg);
-            //}
+            Image1.Image.Save("../../images/Image1.jpeg", ImageFormat.Jpeg);
+                
+            Image2.Image.Save("../../images/Image2.jpeg", ImageFormat.Jpeg);
+
+            Image3.Image.Save("../../images/Image3.jpeg", ImageFormat.Jpeg);
+
+            MessageBox.Show("Saved to /images folder");
         }
 
         private void sRGB_CheckedChanged(object sender, EventArgs e)
