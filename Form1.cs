@@ -29,7 +29,6 @@ namespace RGB_Separation
             Image2.SizeMode = PictureBoxSizeMode.StretchImage;
             Image3.SizeMode = PictureBoxSizeMode.StretchImage;
             LabBox.Enabled = false;
-            D65.Checked = true;
             sRGB.Checked = true;
             SeparateChannels.Enabled = false;
             YCbCr.Enabled = false;
@@ -37,6 +36,8 @@ namespace RGB_Separation
             Lab.Enabled = false;
             SaveButton.Enabled = false;
             gamma.Value = (decimal)2.2;
+            illuminant.ValueMember = "D65";
+            illuminant.SelectedIndex = 5;
         }
 
         private void InitImage_Click(object sender, EventArgs e)
@@ -143,18 +144,13 @@ namespace RGB_Separation
 
                 gamma.Value = (decimal)2.2;
 
-            }
-
-        }
-
-        private void D65_CheckedChanged(object sender, EventArgs e)
-        {
-            if (D65.Checked)
-            {
                 wp_x.Value = (decimal)0.3127;
-                wp_y.Value = (decimal)0.329;
+                wp_y.Value = (decimal)0.3290;
+
             }
+
         }
+
 
         private void AdobeRGB_CheckedChanged(object sender, EventArgs e)
         {
@@ -168,6 +164,9 @@ namespace RGB_Separation
                 bp_y.Value = (decimal)0.06;
 
                 gamma.Value = (decimal)2.2;
+
+                wp_x.Value = (decimal)0.3127;
+                wp_y.Value = (decimal)0.3290;
 
             }
         }
@@ -186,6 +185,9 @@ namespace RGB_Separation
 
                 gamma.Value = (decimal)1.8;
 
+                wp_x.Value = (decimal)0.3127;
+                wp_y.Value = (decimal)0.3290;
+
             }
 
         }
@@ -202,6 +204,9 @@ namespace RGB_Separation
                 bp_y.Value = (decimal)0.009;
 
                 gamma.Value = (decimal)2.2;
+
+                wp_x.Value = (decimal)0.3333;
+                wp_y.Value = (decimal)0.3333;
 
             }
         }
@@ -220,6 +225,9 @@ namespace RGB_Separation
 
                 gamma.Value = (decimal)1.2;
 
+                wp_x.Value = (decimal)0.3457;
+                wp_y.Value = (decimal)0.3585;
+
             }
         }
 
@@ -235,7 +243,76 @@ namespace RGB_Separation
                 bp_y.Value = (decimal)0.06;
 
                 gamma.Value = (decimal)1.95;
+
+                wp_x.Value = (decimal)0.3127;
+                wp_y.Value = (decimal)0.3290;
             }
+        }
+
+        private void illuminant_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (illuminant.ValueMember == "A")
+            {
+                wp_x.Value = (decimal)0.44757;
+                wp_y.Value = (decimal)0.40744;
+            }
+            else if (illuminant.ValueMember == "B")
+            {
+                wp_x.Value = (decimal)0.3484;
+                wp_y.Value = (decimal)0.3516;
+            }
+            else if (illuminant.ValueMember == "C")
+            {
+                wp_x.Value = (decimal)0.31006;
+                wp_y.Value = (decimal)0.31615;
+            }
+            else if (illuminant.ValueMember == "D50")
+            {
+                wp_x.Value = (decimal)0.34567;
+                wp_y.Value = (decimal)0.35850;
+            }
+            else if (illuminant.ValueMember == "D55")
+            {
+                wp_x.Value = (decimal)0.33242;
+                wp_y.Value = (decimal)0.34743;
+            }
+            else if (illuminant.ValueMember == "D65")
+            {
+                wp_x.Value = (decimal)0.31273;
+                wp_y.Value = (decimal)0.32902;
+            }
+            else if (illuminant.ValueMember == "D75")
+            {
+                wp_x.Value = (decimal)0.29902;
+                wp_y.Value = (decimal)0.31485;
+            }
+            else if (illuminant.ValueMember == "9300K")
+            {
+                wp_x.Value = (decimal)0.2848;
+                wp_y.Value = (decimal)0.2932;
+            }
+            else if (illuminant.ValueMember == "E")
+            {
+                wp_x.Value = (decimal)0.33333;
+                wp_y.Value = (decimal)0.33333;
+            }
+            else if (illuminant.ValueMember == "F2")
+            {
+                wp_x.Value = (decimal)0.37207;
+                wp_y.Value = (decimal)0.37512;
+            }
+            else if (illuminant.ValueMember == "F7")
+            {
+                wp_x.Value = (decimal)0.31285;
+                wp_y.Value = (decimal)0.32918;
+            }
+            else if (illuminant.ValueMember == "F11")
+            {
+                wp_x.Value = (decimal)0.38054;
+                wp_y.Value = (decimal)0.37691;
+            }
+
+
         }
     }
 }

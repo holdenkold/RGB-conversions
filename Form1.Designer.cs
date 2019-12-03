@@ -57,7 +57,7 @@
             this.bp_x = new System.Windows.Forms.NumericUpDown();
             this.bp_y = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.D65 = new System.Windows.Forms.RadioButton();
+            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.wp_x = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SaveButton = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
+            this.illuminant = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.InitImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2)).BeginInit();
@@ -380,8 +380,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.illuminant);
             this.groupBox1.Controls.Add(this.domainUpDown1);
-            this.groupBox1.Controls.Add(this.D65);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.wp_x);
             this.groupBox1.Controls.Add(this.label11);
@@ -394,17 +394,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Predefined illuminant";
             // 
-            // D65
+            // domainUpDown1
             // 
-            this.D65.AutoSize = true;
-            this.D65.Location = new System.Drawing.Point(13, 19);
-            this.D65.Name = "D65";
-            this.D65.Size = new System.Drawing.Size(45, 17);
-            this.D65.TabIndex = 20;
-            this.D65.TabStop = true;
-            this.D65.Text = "D65";
-            this.D65.UseVisualStyleBackColor = true;
-            this.D65.CheckedChanged += new System.EventHandler(this.D65_CheckedChanged);
+            this.domainUpDown1.Location = new System.Drawing.Point(13, 106);
+            this.domainUpDown1.Name = "domainUpDown1";
+            this.domainUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.domainUpDown1.TabIndex = 23;
+            this.domainUpDown1.Text = "domainUpDown1";
             // 
             // label12
             // 
@@ -476,13 +472,27 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // domainUpDown1
+            // illuminant
             // 
-            this.domainUpDown1.Location = new System.Drawing.Point(13, 106);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.domainUpDown1.TabIndex = 23;
-            this.domainUpDown1.Text = "domainUpDown1";
+            this.illuminant.FormattingEnabled = true;
+            this.illuminant.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D50",
+            "D55",
+            "D65",
+            "D75",
+            "9300K",
+            "E",
+            "F2",
+            "F7",
+            "F11"});
+            this.illuminant.Location = new System.Drawing.Point(13, 19);
+            this.illuminant.Name = "illuminant";
+            this.illuminant.Size = new System.Drawing.Size(78, 21);
+            this.illuminant.TabIndex = 24;
+            this.illuminant.SelectedIndexChanged += new System.EventHandler(this.illuminant_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -554,7 +564,6 @@
         private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.RadioButton D65;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -567,6 +576,7 @@
         private System.Windows.Forms.RadioButton Wide_Gamut;
         private System.Windows.Forms.RadioButton CIE_RGB;
         private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.ComboBox illuminant;
     }
 }
 
